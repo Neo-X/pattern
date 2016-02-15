@@ -1124,7 +1124,7 @@ class Table(object):
         """ Inserts a new row from the given field parameters, returns id.
         """
         # Table.insert(name="Taxi", age=2, type="cat")
-        # Table.insert({"name":"Fricassée", "age":2, "type":"cat"})
+        # Table.insert({"name":"FricassÃ©e", "age":2, "type":"cat"})
         commit = kwargs.pop("commit", True) # As fieldname, use abs(Table.name, "commit").
         if len(args) == 0 and len(kwargs) == 1 and isinstance(kwargs.get("values"), dict):
             kwargs = kwargs["values"]        
@@ -1843,7 +1843,7 @@ except:
 
 #db = Database("test")
 #db.create("persons", (pk(), field("data", TEXT)))
-#db.persons.append((json.dumps({"name": u"Schrödinger", "type": "cat"}),))
+#db.persons.append((json.dumps({"name": u"SchrÃ¶dinger", "type": "cat"}),))
 #
 #for id, data in db.persons:
 #    print(id, json.loads(data))

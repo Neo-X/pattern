@@ -1617,6 +1617,7 @@ class Twitter(SearchEngine):
             r.language = self.format(x.get("metadata", {}).get("iso_language_code"))
             r.shares   = self.format(x.get("retweet_count", 0))
             r.profile  = self.format(x.get("user", {}).get("profile_image_url")) # Profile picture URL.
+            r.geo      = self.format(x.get("geo", {})) # Profile picture URL.
             # Fetch original status if retweet is truncated (i.e., ends with "...").
             rt = x.get("retweeted_status", None)
             if rt:

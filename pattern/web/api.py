@@ -22,10 +22,10 @@ license["Wikipedia"] = \
     None
 
 license["Twitter"] = (
-    "p7HUdPLlkKaqlPn6TzKkA", # OAuth (key, secret, token)
-    "R7I1LRuLY27EKjzulutov74lKB0FjqcI2DYRUmsu7DQ", (
-    "14898655-TE9dXQLrzrNd0Zwf4zhK7koR5Ahqt40Ftt35Y2qY",
-    "q1lSRDOguxQrfgeWWSJgnMHsO67bqTd5dTElBsyTM"))
+    "VazSChXEQMZWwK6o81Wg8JS3y", # OAuth (key, secret, token)
+    "uwgirnpnMqG6nJRA6sGsDpBOeUFnI2jUjwMjB7EghTPMq7Jq99", (
+    "4796888732-hlg3ffWwuzmVWZIiRdIBV49nkA1dTVlGHYyyIWl",
+    "2sJg1SxdwuMCwaFEqqudZQrUYxNVl5axJM4qN7qfCTi2U"))
 
 license["Facebook"] = \
     "332061826907464|jdHvL3lslFvN-s_sphK1ypCwNaY"
