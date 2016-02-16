@@ -24,24 +24,22 @@ engine = Twitter(language="en")
 # we get the most recent results instead of those in the local cache.
 # Keeping a local cache can also be useful (e.g., while testing)
 # because a query is instant when it is executed the second time.
-prev = None
-for i in range(2):
-    print i
-    for tweet in engine.search("#SuperBowl OR #SuperBowl50", start=prev, count=50, cached=False, date="2016-02-06"):
-        print
-        # print str(tweet.text)
-        print tweet.author
-        print tweet.date
-        print hashtags(tweet.text) # Keywords in tweets start with a "#".
-        print
-        # Only add the tweet to the table if it doesn't already exists.
-        if len(table) == 0 or tweet.id not in index:
-            # remove new lines
-            tweet.text = tweet.text.replace("\n", "")
-            table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo])
-            index.add(tweet.id)
-        # Continue mining older tweets in next iteration.
-        prev = tweet.id
+prev=None
+for tweet in engine.search("#SuperBowl OR #SuperBowl50", start=prev, count=500, cached=False, date="2016-02-05"):
+    print
+    # print str(tweet.text)
+    print tweet.author
+    print tweet.date
+    print hashtags(tweet.text) # Keywords in tweets start with a "#".
+    print
+    # Only add the tweet to the table if it doesn't already exists.
+    if len(table) == 0 or tweet.id not in index:
+        # remove new lines
+        tweet.text = tweet.text.replace("\n", "")
+        table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo])
+        index.add(tweet.id)
+    # Continue mining older tweets in next iteration.
+    prev = tweet.id
 
 # Create a .csv in pattern/examples/01-web/
 table.save(pd("cool.csv"))
