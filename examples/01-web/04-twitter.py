@@ -27,7 +27,11 @@ engine = Twitter(language="en")
 prev=None
 groups = 30
 for i in range(groups):
-    for tweet in engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-10'):
+    # 49.253000,-123.111432,25mi
+    # results = engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-14', geo=(latitude, longitude, radius))
+    results = engine.search("vancouver", start=prev, count=100, cached=False, date='2016-02-14', geo=(49.253000,-123.111432))
+    # results = engine.search("#SingleLifeIn3Words", start=prev, count=100, cached=False, date='2016-02-14')
+    for tweet in results:
         print
         # print str(tweet.text)
         print tweet.author

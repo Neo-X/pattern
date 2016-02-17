@@ -1586,7 +1586,7 @@ class Twitter(SearchEngine):
         # 2) Restrict location with geo=(latitude, longitude, radius).
         #    It can also be a (latitude, longitude)-tuple with default radius "10km".
         if "geo" in kwargs:
-            url.query["geocode"] = ",".join((map(str, kwargs.pop("geo")) + ["10km"])[:3])
+            url.query["geocode"] = ",".join((map(str, kwargs.pop("geo")) + ["50km"])[:3])
         # 3) Restrict most recent with date="YYYY-MM-DD".
         #    Only older tweets are returned.
         if "date" in kwargs:
