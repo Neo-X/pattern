@@ -53,8 +53,8 @@ table.save(pd("opinions.csv"))
 # 2) Status updates from specific profiles.
 #    For this you need a personal license key:
 #    http://www.clips.ua.ac.be/pattern-facebook
-
-license = ""
+# CAAMD9ZA6KZBbUBAMXfD7rfT3TaBCEpRCYKXQin5zH0M9YrAN3sjTZAV9YrjWh6EbLc2MQukT1cbwALWJMR4eRO6skzQKI7iitDs6QsZBnYnT9GKZCO133ZC8P7Yo7qUgcIKum8i1CQEyNtvObmQZCvdlsPzYdKTkFtXr8bi8u5xPgDrAP2AC8nii8v2AKsKxrAZBwA6TsxxlS87iEKd6vbol
+license = "CAAEuAis8fUgBAGlo6ie3HnUVBt9sEyDBWWMDOgUzRzNdLgIQtZAilKbEbETRuE6UJUop9FBvaimgjEW6S0BMxHD6UioYovG9F21ZBC9QAv7ETOfxzu6v7ZBghZC3o2fAaJrE1zBs0JJ1UmRZAKnJDm8bkMeMK1r8Hxdtb7uG8tZAHHiG8BMZClskjx5Oqayx4YZD"
 
 if license != "":
     fb = Facebook(license)

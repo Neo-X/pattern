@@ -28,7 +28,7 @@ license["Twitter"] = (
     "2sJg1SxdwuMCwaFEqqudZQrUYxNVl5axJM4qN7qfCTi2U"))
 
 license["Facebook"] = \
-    "332061826907464|jdHvL3lslFvN-s_sphK1ypCwNaY"
+    "848778391910837|c766f768c3b2aadd76a1e184ad830637"
 
 license["Flickr"] = \
     "787081027f43b0412ba41142d4540480"

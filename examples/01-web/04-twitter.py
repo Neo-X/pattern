@@ -25,21 +25,24 @@ engine = Twitter(language="en")
 # Keeping a local cache can also be useful (e.g., while testing)
 # because a query is instant when it is executed the second time.
 prev=None
-for tweet in engine.search("#SuperBowl OR #SuperBowl50", start=prev, count=500, cached=False, date="2016-02-05"):
-    print
-    # print str(tweet.text)
-    print tweet.author
-    print tweet.date
-    print hashtags(tweet.text) # Keywords in tweets start with a "#".
-    print
-    # Only add the tweet to the table if it doesn't already exists.
-    if len(table) == 0 or tweet.id not in index:
-        # remove new lines
-        tweet.text = tweet.text.replace("\n", "")
-        table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo])
-        index.add(tweet.id)
-    # Continue mining older tweets in next iteration.
-    prev = tweet.id
+groups = 3
+for i in range(groups):
+    for tweet in engine.search("#feeltheburn", start=prev, count=100, cached=False, date='2016-02-10'):
+        print
+        # print str(tweet.text)
+        print tweet.author
+        print tweet.date
+        print hashtags(tweet.text) # Keywords in tweets start with a "#".
+        print
+        # Only add the tweet to the table if it doesn't already exists.
+        if len(table) == 0 or tweet.id not in index:
+            # remove new lines
+            tweet.text = tweet.text.replace("\n", "")
+            tweet.raw = str(tweet.raw).replace("\n", "")
+            table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo, tweet.user_id, tweet.location, tweet.statuses_count, tweet.followers_count, tweet.friends_count, tweet.raw])
+            index.add(tweet.id)
+        # Continue mining older tweets in next iteration.
+        prev = tweet.id
 
 # Create a .csv in pattern/examples/01-web/
 table.save(pd("cool.csv"))

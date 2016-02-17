@@ -1591,6 +1591,8 @@ class Twitter(SearchEngine):
         #    Only older tweets are returned.
         if "date" in kwargs:
             url.query["until"] = kwargs.pop("date")
+        if "since" in kwargs:
+            url.query["since"] = kwargs.pop("since")
         # 4) Restrict language.
         url.query["lang"] = self.language or ""
         # 5) Authenticate.
@@ -1614,10 +1616,17 @@ class Twitter(SearchEngine):
             r.text     = self.format(x.get("text"))
             r.date     = self.format(x.get("created_at"))
             r.author   = self.format(x.get("user", {}).get("screen_name"))
+            r.user_id  = self.format(x.get("user", {}).get("id"))
             r.language = self.format(x.get("metadata", {}).get("iso_language_code"))
             r.shares   = self.format(x.get("retweet_count", 0))
             r.profile  = self.format(x.get("user", {}).get("profile_image_url")) # Profile picture URL.
+            r.location = self.format(x.get("user", {}).get("location")) # Profile picture URL.
+            r.statuses_count = self.format(x.get("user", {}).get("statuses_count")) # Profile picture URL.
+            r.followers_count = self.format(x.get("user", {}).get("followers_count")) # Profile picture URL.
+            r.friends_count = self.format(x.get("user", {}).get("friends_count")) # Profile picture URL.
             r.geo      = self.format(x.get("geo", {})) # Profile picture URL.
+            r.raw      = self.format(x)
+            
             # Fetch original status if retweet is truncated (i.e., ends with "...").
             rt = x.get("retweeted_status", None)
             if rt:
@@ -2621,8 +2630,8 @@ class Facebook(SearchEngine):
         # The token is valid for a limited duration.
         return URL(FACEBOOK + "oauth/access_token?", query={
                "grant_type": "client_credentials",
-                "client_id": "332061826907464",
-            "client_secret": "81ff4204e73ecafcd87635a3a3683fbe"
+                "client_id": "848778391910837",
+            "client_secret": "c766f768c3b2aadd76a1e184ad830637"
         }).download().split("=")[1]
 
     def search(self, query, type=SEARCH, start=1, count=10, cached=False, **kwargs):
