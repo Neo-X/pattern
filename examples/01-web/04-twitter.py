@@ -2,6 +2,7 @@ import os, sys; sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..",
 
 from pattern.web import Twitter, hashtags
 from pattern.db  import Datasheet, pprint, pd
+import json
 
 # This example retrieves tweets containing given keywords from Twitter.
 
@@ -29,7 +30,7 @@ groups = 30
 for i in range(groups):
     # 49.253000,-123.111432,25mi
     # results = engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-14', geo=(latitude, longitude, radius))
-    results = engine.search("vancouver", start=prev, count=100, cached=False, date='2016-02-14', geo=(49.253000,-123.111432))
+    results = engine.search("geocode:49.253000,-123.111432,50mi", start=prev, count=100, cached=False)
     # results = engine.search("#SingleLifeIn3Words", start=prev, count=100, cached=False, date='2016-02-14')
     for tweet in results:
         print
@@ -42,8 +43,9 @@ for i in range(groups):
         if len(table) == 0 or tweet.id not in index:
             # remove new lines
             tweet.text = tweet.text.replace("\n", "")
-            tweet.raw = str(tweet.raw).replace("\n", "")
-            table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo, tweet.user_id, tweet.location, tweet.statuses_count, tweet.followers_count, tweet.friends_count, tweet.raw])
+            # tweet.raw = unicode(tweet.raw).encode('utf8').replace("\n", "")
+            tweet.raw = json.dumps(tweet.raw, separators=(',', ': ')).replace("\n", "")
+            table.append([tweet.id, tweet.text, tweet.date, tweet.language, tweet.shares, tweet.geo, tweet.geo_lat, tweet.geo_long, tweet.user_id, tweet.location, tweet.statuses_count, tweet.followers_count, tweet.friends_count, tweet.raw])
             index.add(tweet.id)
         # Continue mining older tweets in next iteration.
         prev = tweet.id

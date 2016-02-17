@@ -1624,8 +1624,15 @@ class Twitter(SearchEngine):
             r.statuses_count = self.format(x.get("user", {}).get("statuses_count")) # Profile picture URL.
             r.followers_count = self.format(x.get("user", {}).get("followers_count")) # Profile picture URL.
             r.friends_count = self.format(x.get("user", {}).get("friends_count")) # Profile picture URL.
-            r.geo      = self.format(x.get("geo", {})) # Profile picture URL.
-            r.raw      = self.format(x)
+            if x.get("geo", {}) is not None:
+                r.geo      = self.format(x.get("geo", {}).get("coordinates")) # Profile picture URL.
+                r.geo_lat      = self.format(x.get("geo", {}).get("coordinates")[0]) # Profile picture URL.
+                r.geo_long      = self.format(x.get("geo", {}).get("coordinates")[1]) # Profile picture URL.
+            else:
+                r.geo      = None
+                r.geo_lat  = None
+                r.geo_long = None
+            r.raw      = x
             
             # Fetch original status if retweet is truncated (i.e., ends with "...").
             rt = x.get("retweeted_status", None)
