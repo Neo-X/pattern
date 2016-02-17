@@ -25,9 +25,9 @@ engine = Twitter(language="en")
 # Keeping a local cache can also be useful (e.g., while testing)
 # because a query is instant when it is executed the second time.
 prev=None
-groups = 3
+groups = 30
 for i in range(groups):
-    for tweet in engine.search("#feeltheburn", start=prev, count=100, cached=False, date='2016-02-10'):
+    for tweet in engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-10'):
         print
         # print str(tweet.text)
         print tweet.author
