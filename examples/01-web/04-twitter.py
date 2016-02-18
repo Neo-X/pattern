@@ -26,7 +26,7 @@ engine = Twitter(language="en")
 # Keeping a local cache can also be useful (e.g., while testing)
 # because a query is instant when it is executed the second time.
 prev=None
-groups = 30
+groups = 1
 for i in range(groups):
     # 49.253000,-123.111432,25mi
     # results = engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-14', geo=(latitude, longitude, radius))

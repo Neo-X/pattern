@@ -1,7 +1,7 @@
 import os, sys; sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from pattern.en import sentiment, polarity, subjectivity, positive
-from pattern.db import Datasheet, INTEGER, STRING
+from pattern.db  import Datasheet, pprint, pd
 
 # Sentiment analysis (or opinion mining) attempts to determine if
 # a text is objective or subjective, positive or negative.
@@ -60,11 +60,21 @@ print
 
 # The label offers additional meta-information.
 # For example, its value is MOOD for emoticons:
+try:
+    table = Datasheet.load(pd("../../valentines.csv"))
+    index = set(table.columns[0])
+except Exception as e:
+    print e
+    sys.exit()
 
-table = Datasheet.load(pd("cool.csv"))
-index = set(table.columns[0])
-
-for row in table:
-    print row
+for i in range(len(table)):
+    text = table[i][1]
+    sent = sentiment(text)
     
+    print sent[0], sent[1], text
+    table[i].append(sent[0])
+    table[i].append(sent[1])
+    
+
+table.save(pd("cool.csv"))
 
