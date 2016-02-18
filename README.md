@@ -22,35 +22,17 @@ License
 
 **BSD**, see `LICENSE.txt` for further details.
 
-Installation
-------------
 
-Pattern is written for Python 2.5+ (no support for Python 3 yet). The module has no external dependencies except when using LSA in the pattern.vector module, which requires NumPy (installed by default on Mac OS X). To install Pattern so that it is available in all your scripts, unzip the download and from the command line do:
-```bash
-cd pattern-2.6
-python setup.py install
-```
+Setup
+-------
 
-If you have pip, you can automatically download and install from the PyPi repository:
-```bash
-pip install pattern
-```
+The setup can be simple. For example if you wanted to setup for collecting data from twitter
+you should only need to update the API key with your API key. The file you need to update is
+ pattern/web/api.py. The license setting for twitter (**license["Twitter"]**) needs to be changed.
+ Update the four lines to reflect the values you have for the twitter App api key you have.
 
-If none of the above works, you can make Python aware of the module in three ways:
-- Put the pattern folder in the same folder as your script.
-- Put the pattern folder in the standard location for modules so it is available to all scripts:
-  * `c:\python26\Lib\site-packages\` (Windows),
-  * `/Library/Python/2.6/site-packages/` (Mac OS X),
-  * `/usr/lib/python2.6/site-packages/` (Unix).
-- Add the location of the module to `sys.path` in your script, before importing it:
 
-```python
-MODULE = '/users/tom/desktop/pattern'
-import sys; if MODULE not in sys.path: sys.path.append(MODULE)
-from pattern.en import parsetree
-```
-
-Example
+Code Example
 -------
 
 This example trains a classifier on adjectives mined from Twitter. First, tweets that contain hashtag #win or #fail are collected. For example: "$20 tip off a sweet little old lady today #win". The word part-of-speech tags are then parsed, keeping only adjectives. Each tweet is transformed to a vector, a dictionary of adjective → count items, labeled `WIN` or `FAIL`. The classifier uses the vectors to learn which other tweets look more like  `WIN` or more like `FAIL`.
