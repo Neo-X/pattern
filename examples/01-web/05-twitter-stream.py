@@ -11,7 +11,7 @@ from pattern.web import Twitter
 # Twitter.stream() gives us the most recent tweets.
 
 # It might take a few seconds to set up the stream.
-stream = Twitter().stream("I hate", timeout=30)
+stream = Twitter().stream("#feelthebern", timeout=30)
 
 #while True:
 for i in range(100):
