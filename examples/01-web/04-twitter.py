@@ -29,9 +29,10 @@ prev=None
 groups = 1
 for i in range(groups):
     # 49.253000,-123.111432,25mi
-    results = engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-14', geo=(latitude, longitude, radius))
+    # results = engine.search("#feelthebern", start=prev, count=100, cached=False, date='2016-02-14', geo=(latitude, longitude, radius))
     # results = engine.search("geocode:49.253000,-123.111432,50mi", start=prev, count=100, cached=False)
     # results = engine.search("#SingleLifeIn3Words", start=prev, count=100, cached=False, date='2016-02-14')
+    results = engine.search("#Valentines OR #ValentinesDay", start=prev, count=100, cached=False, date='2016-02-15', since='2016-02-13')
     for tweet in results:
         print
         # print str(tweet.text)

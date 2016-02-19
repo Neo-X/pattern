@@ -61,7 +61,7 @@ print
 # The label offers additional meta-information.
 # For example, its value is MOOD for emoticons:
 try:
-    table = Datasheet.load(pd("../../valentines.csv"))
+    table = Datasheet.load(pd("../../singleLife.csv"))
     index = set(table.columns[0])
 except Exception as e:
     print e
